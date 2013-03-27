@@ -9,11 +9,12 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
-import utfpr.util.DigitoVerificadorCPF;
+import utfpr.util.ValidaCPF;
 
 /**
  *
- * @author Wilson
+ * @author Diogo
+ * 
  */
 public class CPFValidator implements Validator {
 
@@ -23,11 +24,10 @@ public class CPFValidator implements Validator {
         if (!cpf.matches("\\d{11}")) {        
             throw new ValidatorException(new FacesMessage("CPF \'" + cpf + "\' em formato incorreto."));
         } else {
-            DigitoVerificadorCPF dvcpf = new DigitoVerificadorCPF(cpf.substring(0, 9));
-            int dv = Integer.parseInt(cpf.substring(9, 11));
-            if (!dvcpf.isValido(dv)) {
-                throw new ValidatorException(new FacesMessage("CPF \'" + cpf + "\' inválido"));
-            }
+            ValidaCPF validaCadastro = new ValidaCPF();
+            if (!validaCadastro.isCPF(cpf) == true) {
+              throw new ValidatorException(new FacesMessage("CPF \'" + cpf + "\' inválido"));
+          }
         }
     }
     
