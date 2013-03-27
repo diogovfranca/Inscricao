@@ -126,12 +126,6 @@
                 <ice:inputText id="email" value="#{inscricaoBean.candidato.email}" size="60"
                       styleClass="ui-inputfield" label="E-mail" maxlength="30" required="true"/>
             </ice:panelGroup>
-            <ice:panelGroup styleClass="panelGroup">
-                <ice:outputLabel for="idioma" value="Idioma"/>
-                <ice:selectOneMenu id="idioma" value="#{inscricaoBean.candidato.idioma.codigo}" style="width:12em" styleClass="ui-selectonemenu">
-                    <f:selectItems value="#{inscricaoBean.idiomaItemList}"/>
-                </ice:selectOneMenu>
-            </ice:panelGroup>
             
             <ice:dataTable styleClass="panelGroup" value="#" var="p">
             <ice:column>
