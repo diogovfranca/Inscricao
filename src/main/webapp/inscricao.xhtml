@@ -27,8 +27,8 @@
             .panelGroup {
                 text-align: left; 
                 margin-bottom: 10px; 
-                margin-left: 100px;
             }
+            
         </style>
     </ui:define>
     
@@ -42,42 +42,52 @@
         <ice:form>
             <div class="titulo-form">FICHA DE INSCRIÇÃO</div>
             <ice:panelGroup styleClass="panelGroup" style="margin-top: 30px">
+                <ice:outputLabel for="idioma" value="Idioma"/>
+                <ice:selectOneMenu id="idioma" value="#{inscricaoBean.cursos.curso}" style="width:12em" styleClass="ui-selectonemenu">
+                    <f:selectItems value="#{inscricaoBean.idiomaItemList}"/>
+                </ice:selectOneMenu>
+              <ice:panelGroup styleClass="panelGroup">
                 <ice:outputLabel for="nome" value="Nome"/>
-                <ice:inputText id="nome" value="#{inscricaoBean.candidato.nome}" size="50"
+                <ice:inputText id="nome" value="#{inscricaoBean.usuarios.nome}" size="80"
                      styleClass="ui-inputfield" label="Nome" maxlength="100" required="true"/>
-            </ice:panelGroup>
+                </ice:panelGroup>
             <ice:panelGroup styleClass="panelGroup">
                 <ice:outputLabel for="cpf" value="CPF"/>
-                <ace:maskedEntry id="cpf" value="#{inscricaoBean.candidato.cpf}"  mask="999999999-99"
+                <ace:maskedEntry id="cpf" value="#{inscricaoBean.usuarios.cpf}"  mask="999999999-99"
                                  label="CPF" size="15" required="true" converter="#{inscricaoBean.cpfConverter}">
                     <f:validator binding="#{inscricaoBean.cpfValidator}"/>
                 </ace:maskedEntry>
+                <ice:outputLabel></ice:outputLabel>
                 <ice:outputLabel for="rg" value="RG"/>
-                <ice:inputText id="rg" value="#{inscricaoBean.candidato.rg}" size="25"
+                <ice:inputText id="rg" value="#{inscricaoBean.usuarios.rg}" size="26"
                          styleClass="ui-inputfield" label="RG" maxlength="20" required="true"/>
             </ice:panelGroup>
             <ice:panelGroup styleClass="panelGroup">
                 <ice:outputLabel for="endereco" value="Endereço"/>
-                <ice:inputText id="endereco" value="#{inscricaoBean.candidato.endereco}" size="50"
-                      styleClass="ui-inputfield" label="Endereço" maxlength="50" required="true"/>                
+                <ice:inputText id="endereco" value="#{inscricaoBean.usuarios.endereco}" size="50"
+                      styleClass="ui-inputfield" label="Endereço" maxlength="50" required="true"/> 
+                <ice:outputLabel for="numero" value="Número"/>
+                <ice:inputText id="numero" value="#{inscricaoBean.usuarios.numero}" size="10"
+                      styleClass="ui-inputfield" label="Número" maxlength="5" required="true"/>
             </ice:panelGroup>
             <ice:panelGroup styleClass="panelGroup">
-                <ice:outputLabel for="numero" value="Número"/>
-                <ice:inputText id="numero" value="#{inscricaoBean.candidato.endereco}" size="8"
-                      styleClass="ui-inputfield" label="Número" maxlength="5" required="true"/>
+                <ice:outputLabel for="cep" value="CEP"/>
+                <ace:maskedEntry id="cep" value="#{inscricaoBean.usuarios.cep}" mask="99999-999"
+                                 label="CEP" size="10" required="true" converter="#{inscricaoBean.cepConverter}"/>
                 <ice:outputLabel for="complemento" value="Complem."/>
-                <ice:inputText id="complemento" value="#{inscricaoBean.candidato.endereco}" size="10"
+                <ice:inputText id="complemento" value="#{inscricaoBean.usuarios.complemento}" size="10"
                       styleClass="ui-inputfield" label="Complemento" maxlength="10" />
                 <ice:outputLabel for="bairro" value="Bairro"/>
-                <ice:inputText id="bairro" value="#{inscricaoBean.candidato.endereco}" size="15"
-                      styleClass="ui-inputfield" label="bairro" maxlength="15" />                
+                <ice:inputText id="bairro" value="#{inscricaoBean.usuarios.bairro}" size="17"
+                      styleClass="ui-inputfield" label="bairro" maxlength="20" />                
             </ice:panelGroup>
             <ice:panelGroup styleClass="panelGroup">
                 <ice:outputLabel for="cidade" value="Cidade"/>
-                <ice:inputText id="cidade" value="#{inscricaoBean.candidato.cidade}" size="30"
+                <ice:inputText id="cidade" value="#{inscricaoBean.usuarios.cidade}" size="30"
                         styleClass="ui-inputfield" label="cidade" maxlength="30" required="true"/>
+                <ice:outputLabel></ice:outputLabel>
                 <ice:outputLabel for="estado" value="Estado"/>
-                <ice:selectOneMenu id="estado" value="#{inscricaoBean.candidato.estado}" style="width:6em" styleClass="ui-selectonemenu"
+                <ice:selectOneMenu id="estado" value="#{inscricaoBean.usuarios.estado}" style="width:6em" styleClass="ui-selectonemenu"
                                    required="true" label="Estado">
                   <f:selectItem itemValue="Acre" itemLabel="AC"/>
                   <f:selectItem itemValue="Alagoas" itemLabel="AL"/>
@@ -109,28 +119,24 @@
                 </ice:selectOneMenu>
             </ice:panelGroup>
             <ice:panelGroup styleClass="panelGroup">
-                <ice:outputLabel for="cep" value="CEP"/>
-                <ace:maskedEntry id="cep" value="#{inscricaoBean.candidato.cep}" mask="99999-999"
-                                 label="CEP" size="10" required="true" converter="#{inscricaoBean.cepConverter}"/>
-            </ice:panelGroup>
-            <ice:panelGroup styleClass="panelGroup">
                 <ice:outputLabel for="fone" value="Telefone"/>
-                <ace:maskedEntry id="fone" value="#{inscricaoBean.candidato.fone}" mask="(99) 9999-9999"
+                <ace:maskedEntry id="fone" value="#{inscricaoBean.usuarios.telefone}" mask="(99) 9999-9999"
                     label="Fone" required="true" size="15"/>
+                <ice:outputLabel></ice:outputLabel>
                 <ice:outputLabel for="celular" value="Celular"/>
-                <ace:maskedEntry id="celular" value="#{inscricaoBean.candidato.celular}" mask="(99) 9999-9999"
+                <ace:maskedEntry id="celular" value="#{inscricaoBean.usuarios.celular}" mask="(99) 9999-9999"
                     label="Celular" size="15"/>
             </ice:panelGroup> 
             <ice:panelGroup styleClass="panelGroup">
                 <ice:outputLabel for="email" value="E-mail"/>
-                <ice:inputText id="email" value="#{inscricaoBean.candidato.email}" size="60"
+                <ice:inputText id="email" value="#{inscricaoBean.usuarios.email}" size="60"
                       styleClass="ui-inputfield" label="E-mail" maxlength="30" required="true"/>
             </ice:panelGroup>
             
-            <ice:dataTable styleClass="panelGroup" value="#" var="p">
+            <ice:dataTable styleClass="panelGroup"  value="#" var="p">
             <ice:column>
                 <f:facet name="header">
-                    <ice:outputText value="select" />
+                    <ice:outputText value="Selecione" />
                 </f:facet>
                 <ice:selectBooleanCheckbox />
             </ice:column>
@@ -145,49 +151,11 @@
                     <ice:outputText value="Curso" />
                 </f:facet>
                 <ice:outputText value="Curso 1" />
-
-            </ice:column>
-
-            <ice:column style="width:150px">
-                <f:facet name="header">
-                    <ice:outputText value="Url" />
-                </f:facet>
-                <ice:outputText value="url" />
-
-            </ice:column>
-
-
-            <ice:column style="width:300px">
-                <f:facet name="header">
-                    <ice:outputText value="Description" />
-                </f:facet>
-                <ice:outputText value="descriptions" />
-
-            </ice:column>
-        </ice:dataTable>
+            </ice:column>          
             
+        </ice:dataTable>
+             </ice:panelGroup>
             <ice:commandButton value="Enviar" action="#{inscricaoBean.inscricaoAction}"/>
-            <ice:panelGroup>
-                <ice:outputLink value="http://consulta.tesouro.fazenda.gov.br/gru/gerarHTML.asp" target="_blank" rendered="#{inscricaoBean.linkGRUVisivel}">
-                    <ice:outputText value="Gerar GRU para Pagamento"/>
-                    <f:param name="codigo_favorecido" value="154358"/>
-                    <f:param name="gestao" value="15246"/>
-                    <f:param name="codigo_correlacao" value="1213"/>
-                    <f:param name="nome_favorecido" value="UTFPR - CAMPUS CURITIBA"/>
-                    <f:param name="codigo_recolhimento" value="28832-2"/>
-                    <f:param name="nome_recolhimento" value="DALEM"/>
-                    <f:param name="referencia" value="24000000000000000000"/>
-                    <f:param name="competencia" value="#{inscricaoBean.competencia}"/>
-                    <f:param name="vencimento" value="#{inscricaoBean.dataVencimento}"/>
-                    <f:param name="boleto" value="3"/>
-                    <f:param name="impressao" value="sa"/>
-                    <f:param name="campo" value="nrcr"/>
-                    <f:param name="ind" value="0"/>
-                    <f:param name="valorPrincipal" value="100,00"/>
-                    <f:param name="valorTotal" value="100,00"/>
-                    <f:param name="cnpj_cpf" value="#{inscricaoBean.candidato.cpf}"/>
-                </ice:outputLink>
-            </ice:panelGroup>
             <ice:messages/>
         </ice:form>
     </ui:define>

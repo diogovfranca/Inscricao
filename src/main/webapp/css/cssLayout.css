@@ -10,12 +10,13 @@ body {
     width: 630px;
     margin-left: auto;
     margin-right: auto;
+   
 }
 
 #top, #bottom, #content {
     background-color: white;
-    color: blue;
-    width: 600px;
+    color: black;
+    width: 1600px;
     padding: 0px 15px
 }
 
