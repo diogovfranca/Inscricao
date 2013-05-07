@@ -43,9 +43,9 @@
             <div class="titulo-form">FICHA DE INSCRIÇÃO</div>
             <ice:panelGroup styleClass="panelGroup" style="margin-top: 30px">
                 <ice:outputLabel for="idioma" value="Idioma"/>
-                <ice:selectOneMenu id="idioma" value="#{inscricaoBean.cursos.curso}" style="width:12em" styleClass="ui-selectonemenu">
+                <ice:selectManyCheckbox id="idioma" value="#{inscricaoBean.cursos.curso}" style="width:12em" styleClass="ui-selectonemenu">
                     <f:selectItems value="#{inscricaoBean.idiomaItemList}"/>
-                </ice:selectOneMenu>
+                </ice:selectManyCheckbox>
               <ice:panelGroup styleClass="panelGroup">
                 <ice:outputLabel for="nome" value="Nome"/>
                 <ice:inputText id="nome" value="#{inscricaoBean.usuarios.nome}" size="80"
@@ -133,7 +133,7 @@
                       styleClass="ui-inputfield" label="E-mail" maxlength="30" required="true"/>
             </ice:panelGroup>
             
-            <ice:dataTable styleClass="panelGroup"  value="#" var="p">
+            <ice:dataTable styleClass="panelGroup"  value="#{inscricaoBean.idiomaItemList}" var="p">
             <ice:column>
                 <f:facet name="header">
                     <ice:outputText value="Selecione" />
@@ -144,15 +144,15 @@
                 <f:facet name="header">
                     <ice:outputText value="ID" />
                 </f:facet>
-                <ice:outputText value="1" />
+              <ice:outputText value="#{p.value}" />
             </ice:column>
             <ice:column>
                 <f:facet name="header">
                     <ice:outputText value="Curso" />
                 </f:facet>
-                <ice:outputText value="Curso 1" />
-            </ice:column>          
-            
+              <ice:outputText value="#{p.label}" />
+            </ice:column> 
+              
         </ice:dataTable>
              </ice:panelGroup>
             <ice:commandButton value="Enviar" action="#{inscricaoBean.inscricaoAction}"/>
