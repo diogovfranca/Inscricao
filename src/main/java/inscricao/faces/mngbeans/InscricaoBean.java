@@ -27,14 +27,12 @@ import utfpr.persistence.controller.JpaController;
 public class InscricaoBean extends PageBean {
     private int user = 1;
     private Usuarios usuario = new Usuarios(user);
-    private int var = 2;
+    private int var = 1;
     private Cursos curso = new Cursos(var);
     private CPFConverter cpfConverter = new CPFConverter();
     private CEPConverter cepConverter = new CEPConverter();
     private CPFValidator cpfValidator = new CPFValidator();
-    private SimpleDateFormat formatDataVencto = new SimpleDateFormat("dd/MM/yyyy");
-    private SimpleDateFormat formatCompetencia = new SimpleDateFormat("MM/yyyy");
-
+    
     public Usuarios getUsuarios() {
         return usuario;
     }
@@ -82,28 +80,16 @@ public class InscricaoBean extends PageBean {
             List<SelectItem> itens = new ArrayList<SelectItem>();
             List<Cursos> cursos = ctl.findAll();
             for (Cursos id: cursos) {
-                itens.add(new SelectItem(id.getCurso(), id.getDescricao()));
+                itens.add(new SelectItem(id.getId(), id.getCurso(), id.getDescricao()));
             }
             return itens;
         } finally {
             em.close();
         }
     }
-    
-    public String getDataVencimento() {
-        GregorianCalendar hoje = new GregorianCalendar();
-        hoje.add(Calendar.DAY_OF_MONTH, 1);
-        return formatDataVencto.format(hoje.getTime());
-    }
-    
-    public String getCompetencia() {
-        GregorianCalendar hoje = new GregorianCalendar();
-        hoje.add(Calendar.DAY_OF_MONTH, 1);
-        return formatCompetencia.format(hoje.getTime());
-    }
-    
+        
     public void inscricaoAction() {
-        JpaController ctl = new JpaController();
+     JpaController ctl = new JpaController();
         EntityManager em = ctl.getEntityManager();
         try {
             if (validaCandidato()) {
